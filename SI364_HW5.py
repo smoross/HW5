@@ -1,5 +1,5 @@
 ## SI 364
-## HW5
+## HW5 - Samantha Moross
 
 ## Import statements
 import os
