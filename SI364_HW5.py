@@ -35,7 +35,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587 #default
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'smoross364@gmail.com' # TODO export to your environs -- may want a new account just for this. It's expecting gmail, not umich
+app.config['MAIL_USERNAME'] = 'smoross364@gmail.com'
 app.config['MAIL_PASSWORD'] = 'ryebrooktecmichigan'
 app.config['MAIL_SUBJECT_PREFIX'] = '[Twitter App]'
 app.config['MAIL_SENDER'] = 'smoross364@gmail.com'
@@ -45,7 +45,7 @@ app.config['ADMIN'] = 'smoross364@gmail.com'
 manager = Manager(app)
 db = SQLAlchemy(app) # For database use
 migrate = Migrate(app, db) # For database use/updating
-manager.add_command('db', MigrateCommand) # Add migrate
+manager.add_command('db', MigrateCommand) 
 mail = Mail(app)
 # TODO: Run commands to create your migrations folder and 
 #get ready to create a first migration, as shown in the textbook and in class.
@@ -127,7 +127,7 @@ class TweetForm(FlaskForm):
 ## -- Hashtags should be identified by their text (e.g. if there's already a hashtag with that text, return it; otherwise, create it)
 
 # TODO: Edit get_or_create_user (AND get_or_create_tweet -- see below) as necessary to store a user's email as well as their twitter username. 
-#The get_or_create_user function should accept an email as input and deal with it appropriately to save it as part of a User row. 
+# The get_or_create_user function should accept an email as input and deal with it appropriately to save it as part of a User row. 
 #Each user (from now on) has an email! This should be a small change to how the function currently works.
 def get_or_create_user(db_session, username, email):
     user = db_session.query(User).filter_by(twitter_username=username, email=email).first()
@@ -179,8 +179,7 @@ def internal_server_error(e):
     return render_template('500.html'), 500
 
 
-# TODO: Edit the index route so that, when a tweet is saved by a certain user, that user gets an email. 
-# Use the send_email function (just like the one in the textbook) that you defined above.
+# TODO: Edit the index route so that, when a tweet is saved by a certain user, that user gets an email. Use the send_email function (just like the one in the textbook) that you defined above.
 # NOTE: You may want to create a test gmail account to try this out so testing it out is not annoying. You can also use other ways of making test emails easy to deal with, as discussed in class!
 ## This is also very similar to example code.
 @app.route('/', methods=['GET', 'POST'])
